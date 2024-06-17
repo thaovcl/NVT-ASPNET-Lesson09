@@ -1,0 +1,2 @@
+D:\ASPNET\NVTLesson09\NVTLesson09\obj\Debug\NVTLesson09.csproj.AssemblyReference.cache
+D:\ASPNET\NVTLesson09\NVTLesson09\obj\Debug\NVTLesson09.csproj.CoreCompileInputs.cache
