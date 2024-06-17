@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NVT_K22CNT1Lesson07Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="nvtKhoa">
+          <Key>
+            <PropertyRef Name="NvtID" />
+          </Key>
+          <Property Name="NvtID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NvtTenKh" Type="nchar" MaxLength="10" />
+          <Property Name="NvtTrangthai" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="nvtSV">
+          <Key>
+            <PropertyRef Name="NvtMaSV" />
+          </Key>
+          <Property Name="NvtMaSV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NvtHoSV" Type="nvarchar" MaxLength="50" />
+          <Property Name="NvtTenSV" Type="nvarchar" MaxLength="50" />
+          <Property Name="NvtNS" Type="date" />
+          <Property Name="NvtPhai" Type="bit" />
+          <Property Name="NvtPhone" Type="nchar" MaxLength="10" />
+          <Property Name="NvtEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="NvtID" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_nvtSV_nvtKhoa">
+          <End Role="nvtKhoa" Type="Self.nvtKhoa" Multiplicity="0..1" />
+          <End Role="nvtSV" Type="Self.nvtSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nvtKhoa">
+              <PropertyRef Name="NvtID" />
+            </Principal>
+            <Dependent Role="nvtSV">
+              <PropertyRef Name="NvtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NVT_K22CNT1Lesson07ModelStoreContainer">
+          <EntitySet Name="nvtKhoa" EntityType="Self.nvtKhoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nvtSV" EntityType="Self.nvtSV" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_nvtSV_nvtKhoa" Association="Self.FK_nvtSV_nvtKhoa">
+            <End Role="nvtKhoa" EntitySet="nvtKhoa" />
+            <End Role="nvtSV" EntitySet="nvtSV" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NVT_K22CNT1Lesson07Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="nvtKhoa">
+          <Key>
+            <PropertyRef Name="NvtID" />
+          </Key>
+          <Property Name="NvtID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NvtTenKh" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NvtTrangthai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="nvtSVs" Relationship="NVT_K22CNT1Lesson07Model.FK_nvtSV_nvtKhoa" FromRole="nvtKhoa" ToRole="nvtSV" />
+        </EntityType>
+        <EntityType Name="nvtSV">
+          <Key>
+            <PropertyRef Name="NvtMaSV" />
+          </Key>
+          <Property Name="NvtMaSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NvtHoSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NvtTenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NvtNS" Type="DateTime" Precision="0" />
+          <Property Name="NvtPhai" Type="Boolean" />
+          <Property Name="NvtPhone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NvtEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NvtID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="nvtKhoa" Relationship="NVT_K22CNT1Lesson07Model.FK_nvtSV_nvtKhoa" FromRole="nvtSV" ToRole="nvtKhoa" />
+        </EntityType>
+        <EntityContainer Name="NVT_K22CNT1Lesson07Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="nvtKhoas" EntityType="Self.nvtKhoa" />
+          <EntitySet Name="nvtSVs" EntityType="Self.nvtSV" />
+          <AssociationSet Name="FK_nvtSV_nvtKhoa" Association="NVT_K22CNT1Lesson07Model.FK_nvtSV_nvtKhoa">
+            <End Role="nvtKhoa" EntitySet="nvtKhoas" />
+            <End Role="nvtSV" EntitySet="nvtSVs" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_nvtSV_nvtKhoa">
+          <End Type="NVT_K22CNT1Lesson07Model.nvtKhoa" Role="nvtKhoa" Multiplicity="0..1" />
+          <End Type="NVT_K22CNT1Lesson07Model.nvtSV" Role="nvtSV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nvtKhoa">
+              <PropertyRef Name="NvtID" />
+            </Principal>
+            <Dependent Role="nvtSV">
+              <PropertyRef Name="NvtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NVT_K22CNT1Lesson07ModelStoreContainer" CdmEntityContainer="NVT_K22CNT1Lesson07Entities1">
+          <EntitySetMapping Name="nvtKhoas">
+            <EntityTypeMapping TypeName="NVT_K22CNT1Lesson07Model.nvtKhoa">
+              <MappingFragment StoreEntitySet="nvtKhoa">
+                <ScalarProperty Name="NvtID" ColumnName="NvtID" />
+                <ScalarProperty Name="NvtTenKh" ColumnName="NvtTenKh" />
+                <ScalarProperty Name="NvtTrangthai" ColumnName="NvtTrangthai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nvtSVs">
+            <EntityTypeMapping TypeName="NVT_K22CNT1Lesson07Model.nvtSV">
+              <MappingFragment StoreEntitySet="nvtSV">
+                <ScalarProperty Name="NvtMaSV" ColumnName="NvtMaSV" />
+                <ScalarProperty Name="NvtHoSV" ColumnName="NvtHoSV" />
+                <ScalarProperty Name="NvtTenSV" ColumnName="NvtTenSV" />
+                <ScalarProperty Name="NvtNS" ColumnName="NvtNS" />
+                <ScalarProperty Name="NvtPhai" ColumnName="NvtPhai" />
+                <ScalarProperty Name="NvtPhone" ColumnName="NvtPhone" />
+                <ScalarProperty Name="NvtEmail" ColumnName="NvtEmail" />
+                <ScalarProperty Name="NvtID" ColumnName="NvtID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

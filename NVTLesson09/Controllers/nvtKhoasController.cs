@@ -6,65 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using NVTLesson09.Models;
 
 namespace NVTLesson09.Controllers
 {
-    public class nvtKhoasController : Controller
+    public class NvtKhoasController : Controller
     {
-        private NVT_K22CNT1Lesson09Entities db = new NVT_K22CNT1Lesson07Entities();
+        private NVT_K22CNT1Lesson07Entities1 db = new NVT_K22CNT1Lesson07Entities1();
 
-        // GET: dthKhoas
-        public ActionResult NVTIndex()
+        // GET: NvtKhoas
+        public ActionResult Index()
         {
-            return View(db.nvtKhoa.ToList());
+            return View(db.nvtKhoas.ToList());
         }
 
-        // GET: dthKhoas/Details/5
-        public ActionResult NVTDetails(string id)
+        // GET: NvtKhoas/Details/5
+        public ActionResult NvtDetails(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            nvtKhoa dthKhoa = db.dthKhoa.Find(id);
-            if (dthKhoa == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nvtKhoa);
-        }
-
-        // GET: dthKhoas/Create
-        public ActionResult NVTCreate()
-        {
-            return View();
-        }
-
-        // POST: nvtKhoas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult NVTCreate([Bind(Include = "NvtID,NvtTenKh,NvtTrangthai")] nvtKhoa dthKhoa)
-        {
-            if (ModelState.IsValid)
-            {
-                db.nvtKhoa.Add(nvtKhoa);
-                db.SaveChanges();
-                return RedirectToAction("NVTIndex");
-            }
-
-            return View(nvtKhoa);
-        }
-
-        // GET: dthKhoas/Edit/5
-        public ActionResult NVTEdit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            nvtKhoa dthKhoa = db.nvtKhoa.Find(id);
+            nvtKhoa nvtKhoa = db.nvtKhoas.Find(id);
             if (nvtKhoa == null)
             {
                 return HttpNotFound();
@@ -72,30 +35,68 @@ namespace NVTLesson09.Controllers
             return View(nvtKhoa);
         }
 
-        // POST: nvtKhoas/Edit/5
+        // GET: NvtKhoas/Create
+        public ActionResult NvtCreate()
+        {
+            return View();
+        }
+
+        // POST: NvtKhoas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NVTEdit([Bind(Include = "NvtID,NtvTenKh,NvtTrangthai")] nvtKhoa nvtKhoa)
+        public ActionResult NvtCreate([Bind(Include = "NvtID,NvtTenKh,NvtTrangthai")] nvtKhoa nvtKhoa)
+        {
+            if (ModelState.IsValid)
+            {
+                db.nvtKhoas.Add(nvtKhoa);
+                db.SaveChanges();
+                return RedirectToAction("NvtIndex");
+            }
+
+            return View(nvtKhoa);
+        }
+
+        // GET: NvtKhoas/Edit/5
+        public ActionResult NvtEdit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            nvtKhoa nvtKhoa = db.nvtKhoas.Find(id);
+            if (nvtKhoa == null)
+            {
+                return HttpNotFound();
+            }
+            return View(nvtKhoa);
+        }
+
+        // POST: NvtKhoas/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NvtEdit([Bind(Include = "NvtID,NvtTenKh,NvtTrangthai")] nvtKhoa nvtKhoa)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(nvtKhoa).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("NVTIndex");
+                return RedirectToAction("NvtIndex");
             }
             return View(nvtKhoa);
         }
 
-        // GET: nvtKhoas/Delete/5
-        public ActionResult DTHDelete(string id)
+        // GET: NvtKhoas/Delete/5
+        public ActionResult NvtDelete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            nvtKhoa dthKhoa = db.nvtKhoa.Find(id);
+            nvtKhoa nvtKhoa = db.nvtKhoas.Find(id);
             if (nvtKhoa == null)
             {
                 return HttpNotFound();
@@ -103,15 +104,15 @@ namespace NVTLesson09.Controllers
             return View(nvtKhoa);
         }
 
-        // POST: dthKhoas/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: NvtKhoas/Delete/5
+        [HttpPost, ActionName("NvtDelete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DTHDeleteConfirmed(string id)
+        public ActionResult NvtDeleteConfirmed(string id)
         {
-            nvtKhoa dthKhoa = db.nvtKhoa.Find(id);
-            db.nvtKhoa.Remove(nvtKhoa);
+            nvtKhoa nvtKhoa = db.nvtKhoas.Find(id);
+            db.nvtKhoas.Remove(nvtKhoa);
             db.SaveChanges();
-            return RedirectToAction("NVTIndex");
+            return RedirectToAction("NvtIndex");
         }
 
         protected override void Dispose(bool disposing)

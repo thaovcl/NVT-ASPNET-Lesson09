@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NVT_K22CNT1Lesson07Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="nvtKhoa">
+    <Key>
+      <PropertyRef Name="NvtID" />
+    </Key>
+    <Property Name="NvtID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="NvtTenKh" Type="nchar" MaxLength="10" />
+    <Property Name="NvtTrangthai" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="nvtSV">
+    <Key>
+      <PropertyRef Name="NvtMaSV" />
+    </Key>
+    <Property Name="NvtMaSV" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NvtHoSV" Type="nvarchar" MaxLength="50" />
+    <Property Name="NvtTenSV" Type="nvarchar" MaxLength="50" />
+    <Property Name="NvtNS" Type="date" />
+    <Property Name="NvtPhai" Type="bit" />
+    <Property Name="NvtPhone" Type="nchar" MaxLength="10" />
+    <Property Name="NvtEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="NvtID" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_nvtSV_nvtKhoa">
+    <End Role="nvtKhoa" Type="Self.nvtKhoa" Multiplicity="0..1" />
+    <End Role="nvtSV" Type="Self.nvtSV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nvtKhoa">
+        <PropertyRef Name="NvtID" />
+      </Principal>
+      <Dependent Role="nvtSV">
+        <PropertyRef Name="NvtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NVT_K22CNT1Lesson07ModelStoreContainer">
+    <EntitySet Name="nvtKhoa" EntityType="Self.nvtKhoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nvtSV" EntityType="Self.nvtSV" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_nvtSV_nvtKhoa" Association="Self.FK_nvtSV_nvtKhoa">
+      <End Role="nvtKhoa" EntitySet="nvtKhoa" />
+      <End Role="nvtSV" EntitySet="nvtSV" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
