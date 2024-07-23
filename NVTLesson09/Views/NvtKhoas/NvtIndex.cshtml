@@ -30,8 +30,8 @@
         </td>
         <td>
             @Html.ActionLink("NVT: Edit", "NvtEdit", new { id=item.NvtID.Trim() }) |
-            @Html.ActionLink("NVT: Details", "NvtDetails", new { id=item.NvtID }) |
-            @Html.ActionLink("NVT: Delete", "NvtDelete", new { id=item.NvtID })
+            @Html.ActionLink("NVT: Details", "NvtDetails", new { id=item.NvtID.Trim() }) |
+            @Html.ActionLink("NVT: Delete", "NvtDelete", new { id=item.NvtID.Trim() })
         </td>
     </tr>
 }

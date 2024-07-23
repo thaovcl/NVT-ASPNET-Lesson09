@@ -15,7 +15,7 @@ namespace NVTLesson09.Controllers
         private NVT_K22CNT1Lesson07Entities1 db = new NVT_K22CNT1Lesson07Entities1();
 
         // GET: NvtKhoas
-        public ActionResult Index()
+        public ActionResult NvtIndex()
         {
             return View(db.nvtKhoas.ToList());
         }
